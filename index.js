@@ -7,10 +7,13 @@ var cors = require('cors');
 connectDB()
 // Allow requests from your frontend origin
 
-
+const corsOptions = {
+  origin: 'https://healthy-frontend-neon.vercel.app',
+  optionsSuccessStatus: 200,
+};
 // Apply the CORS middleware before defining routes
 app.use(cors());
-
+app.options('*', cors(corsOptions));
 const port = 5000
 app.use(express.json())
 app.use('/api/auth',require('./routes/auth'))

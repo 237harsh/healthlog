@@ -3,17 +3,22 @@ const express = require('express')
 const connectDB = require('./middlewares/db')
 
 const app = express()
-var cors = require('cors');
 connectDB()
-// Allow requests from your frontend origin
+const cors = require('cors');
+const app = express();
 
 const corsOptions = {
-  origin: 'https://healthy-frontend-neon.vercel.app',
+  origin: 'https://paramvs.site', // Replace with your actual Vercel domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
   optionsSuccessStatus: 200,
 };
-// Apply the CORS middleware before defining routes
-app.use(cors());
+
+app.use(cors(corsOptions));
+
+// Ensure preflight requests are handled
 app.options('*', cors(corsOptions));
+
 const port = 5000
 app.use(express.json())
 app.use('/api/auth',require('./routes/auth'))

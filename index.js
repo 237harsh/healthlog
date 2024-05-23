@@ -5,7 +5,7 @@ const connectDB = require('./middlewares/db')
 const app = express()
 var cors = require('cors');
 connectDB()
-app.use(cors({ origin:"*", credentials:true }));
+app.use(cors());
 const port = 5000
 app.use(express.json())
 app.use('/api/auth',require('./routes/auth'))

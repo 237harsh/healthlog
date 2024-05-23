@@ -5,7 +5,12 @@ const connectDB = require('./middlewares/db')
 const app = express()
 var cors = require('cors');
 connectDB()
-app.use(cors());
+const corsOptions = {
+  origin: 'https://healthy-frontend-neon.vercel.app',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 const port = 5000
 app.use(express.json())
 app.use('/api/auth',require('./routes/auth'))
